@@ -109,12 +109,18 @@ $(function() {
 
   /* This test suite does test on "New Feed Selection" */
   describe('New Feed Selection', function() {
-    let oldFeed;
-    let newFeed;
+    const feedEl = document.getElementsByClassName('feed')[0].children;
+    const oldFeed = [];
+    const newFeed = [];
 
     beforeEach(function(done) {
-      loadFeed(0);
-      oldFeed = document.getElementsByClassName('feed')[0].children;
+      //Passed a calback function to make sure it stays in sync
+      loadFeed(0, function() {
+        Array.from(feedEl).forEach( function(entry){
+          oldFeed.push(entry.innerHTML);
+        });
+      });
+
       loadFeed(1,done);
     });
 
@@ -122,13 +128,16 @@ $(function() {
     * by the loadFeed function that the content actually changes.
     */
     it('content changed', function() {
-      newFeed = document.getElementsByClassName('feed')[0].children;
+      Array.from(feedEl, function(entry){
+        newFeed.push(entry.innerHTML);
+      });
 
       //how far to itterate through the list incase one feed has more items then another
       const listLength = (oldFeed.length < newFeed.lenght) ? oldFeed.length: newFeed.length;
 
       for(let index = 0; index < listLength; index++) {
-        expect(oldFeed[index].innerHTML !== newFeed[index].innerHTM).toBe(true);
+        console.log(`${oldFeed[index]} ::: ${newFeed[index]} :::: ${oldFeed[index] !== newFeed[index]}`);
+        expect(oldFeed[index] !== newFeed[index]).toBe(true);
       }
 
     });
