@@ -78,10 +78,23 @@ $(function() {
     * should have two expectations: does the menu display when
     * clicked and does it hide when clicked again.
     */
+
+    it('toggle view', function() {
+      const classList = bodyEl.classList;
+      const menuButton = document.getElementsByClassName('menu-icon-link')[0];
+
+      menuButton.click();
+      expect(classList.contains('menu-hidden')).toBe(false);
+
+      menuButton.click();
+      expect(classList.contains('menu-hidden')).toBe(true);
+
+    });
   });
 
 
   /* TODO: Write a new test suite named "Initial Entries" */
+  
 
   /* TODO: Write a test that ensures when the loadFeed
    * function is called and completes its work, there is at least
