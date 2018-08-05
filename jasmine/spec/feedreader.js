@@ -63,7 +63,7 @@ $(function() {
     /* This test spec ensures the menu element is
     * hidden by default.
     */
-    it('is initialy hidden', function() {
+    it('is initially hidden', function() {
       const classList = bodyEl.classList;
       expect(classList.contains('menu-hidden')).toBe(true);
 
