@@ -101,7 +101,7 @@ $(function() {
     */
     it('has at least a single entry', function() {
       const feedEl = document.getElementsByClassName('feed')[0];
-      expect(feedEl.children.length > 0).toBe(true);
+      expect(feedEl.children.length).toBeGreaterThan(0);
     });
 
   });
